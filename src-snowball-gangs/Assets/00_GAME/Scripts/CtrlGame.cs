@@ -31,9 +31,15 @@ public class CtrlGame : MonoBehaviour
             Dies++;
             if (Dies >= 3)
             {
-                ShowAds();
+                //ShowAds();
                 Dies = 0;
             }
+
+        }
+
+        if(curLevel >= 1)
+        {
+            ShowAds();
         }
     }
 
