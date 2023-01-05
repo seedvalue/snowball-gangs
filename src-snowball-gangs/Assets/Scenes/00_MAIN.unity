@@ -7937,7 +7937,6 @@ MonoBehaviour:
   isTest: 0
   isOnlyPLayersSpawn: 0
   playersCount: 1
-  curLevel: 0
   Restarts: 0
   Dies: 0
   CurrentCandyValue: 0
@@ -20407,7 +20406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1605873626
 RectTransform:
   m_ObjectHideFlags: 0

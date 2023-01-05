@@ -51,11 +51,19 @@ public class CtrlGame : MonoBehaviour
 
     private IEnumerator ShowAdsCo()
     {
-        CtrlUi.Instance.ShowLoading(true);
-        yield return new WaitForSeconds(2F);
-        CtrlAds.Instance.ShowInterstitial();
         CtrlUi.Instance.ShowLoading(false);
-        
+        if (CtrlAds.Instance.IsHaveAds())
+        {
+            CtrlUi.Instance.ShowLoading(true);
+            yield return new WaitForSeconds(1F);
+            CtrlUi.Instance.ShowLoading(false);
+            CtrlAds.Instance.ShowInterstitial();
+        } else
+        {
+            CtrlUi.Instance.ShowLoading(false);
+            CtrlAds.Instance.RequestInterstitial();
+            Debug.LogError("CtrlGame : ShowAdsCo : CtrlAds.Instance.IsHaveAds() == FALSE ");
+        }
     }
 
 

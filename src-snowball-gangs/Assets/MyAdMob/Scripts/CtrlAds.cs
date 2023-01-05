@@ -66,7 +66,7 @@ public class CtrlAds : MonoBehaviour
 		_bannerView.LoadAd (_reqBanner);
 	}
 	
-	private void RequestInterstitial()
+	public void RequestInterstitial()
 	{
 		string adUnitId = GetUnitId(MyAdsType.Interstitial);
 		// Initialize an InterstitialAd.
@@ -182,7 +182,7 @@ public class CtrlAds : MonoBehaviour
 	public void HandleOnAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
 	{
 		MonoBehaviour.print("HandleFailedToReceiveAd event received with message: "
-		                    + args.LoadAdError);
+							+ args.LoadAdError);
 		this.RequestInterstitial();
 	}
 
@@ -225,7 +225,11 @@ public class CtrlAds : MonoBehaviour
 		}
 	}
 
+	public bool IsHaveAds()
+	{
+		return _interstitial.IsLoaded();
 
+	}
 
 
 	#endregion
@@ -314,12 +318,13 @@ public class CtrlAds : MonoBehaviour
 	void Start ()
 	{
 		DontDestroyOnLoad (gameObject);
+		transform.SetParent(null);
 		RequestInterstitial ();
 		//RequestBanner();
 		//RequestRewarded();
 
 
-		InvokeRepeating("RequestInterstitial", 5, 10);
+	//	InvokeRepeating("RequestInterstitial", 5, 10);
 	}
 
 	#endregion

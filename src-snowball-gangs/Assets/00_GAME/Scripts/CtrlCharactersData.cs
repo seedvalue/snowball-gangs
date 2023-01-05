@@ -161,7 +161,15 @@ public class CtrlCharactersData : MonoBehaviour
        //refresh cubes
         for (int i = 0; i < enemies.Count; i++)
         {
-            enemies[i].targetTransform.position = enemies[i].player.position;
+            if(enemies[i].targetTransform != null )
+            {
+                if(enemies[i].player != null)
+                {
+                    enemies[i].targetTransform.position = enemies[i].player.position;
+                }
+              
+            }
+           
         }
 
 

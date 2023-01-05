@@ -20,8 +20,9 @@ public class EnemyBrain : MonoCache
     {
         _character = transform.GetComponent<Character>();
         _agent = GetComponent<NavMeshAgent>();
-        _agent.enabled = false;
+       
         _agent.SetDestination(transform.position);
+        _agent.enabled = false;
 
         if (CtrlCharactersData.Instance && !isRegistered)
         {
