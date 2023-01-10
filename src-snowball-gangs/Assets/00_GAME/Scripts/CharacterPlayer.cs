@@ -31,7 +31,8 @@ public class CharacterPlayer : Character
  
     public void  SetPlayerSelected(bool isPlayerSelected)
     {
-        Debug.Log("CharacterPlayer : OnPlayerSelected" + isPlayerSelected);
+      //TODO ќѕ“»ћ»«ј÷»я ќно в консоль плевало как в апдейте, сделать так .что бы не лупило даже с дебагом
+        //  Debug.Log("CharacterPlayer : OnPlayerSelected" + isPlayerSelected);
         //Set animation prepare Attack
       
 
