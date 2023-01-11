@@ -8137,9 +8137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb6ab0b1db90ce439253db103cc10a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTest: 0
+  isTest: 1
   isOnlyPLayersSpawn: 0
-  playersCount: 1
+  playersCount: 7
   Restarts: 0
   Dies: 0
   CurrentCandyValue: 0
@@ -9381,7 +9381,7 @@ MonoBehaviour:
   _wndPause: {fileID: 1869721846}
   _wndFinishLevel: {fileID: 715733224}
   _wndLoading: {fileID: 1913796474}
-  isGamePlayTest: 0
+  isGamePlayTest: 1
 --- !u!4 &1310893039 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: af76d153291a0884c983e2ddd699fcfe,
@@ -21990,7 +21990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1819694668
 Transform:
   m_ObjectHideFlags: 0
