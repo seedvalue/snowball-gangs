@@ -250,8 +250,8 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: D:/PROJECTS/UNITY/PUBLISHED/GITHUB/snowball-gangs/Publish/DZBZ_PUBLISH/snowball_gangs_keystorepas_012345FF.keystore
-  AndroidKeyaliasName: snowball_gangs_012345ff
+  AndroidKeystoreName: D:/PROJECTS/UNITY/PUBLISHED/GITHUB/snowball-gangs/Publish/pixeland_PUBLISH/snowball_battle_a12345678.keystore
+  AndroidKeyaliasName: snoball_battle_a12345678
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
