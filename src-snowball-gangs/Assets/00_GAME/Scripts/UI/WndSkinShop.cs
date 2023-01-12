@@ -18,6 +18,7 @@ public class WndSkinShop : MonoBehaviour
     [SerializeField] private Transform _prefabItem;
 
     [SerializeField] TMP_Text _textMoney = null;
+    private List<ItemShopSkinUi> _itemShopSkinUis = new List<ItemShopSkinUi>();
 
 
     [Header("Apply to:")]
@@ -44,6 +45,15 @@ public class WndSkinShop : MonoBehaviour
         Debug.Log("WndSkinShop : OnBuyItem : " + itemSkin.Name);
         CtrlGame.Instance.BuySkinItem(itemSkin.Name, itemSkin.Price);
         RefreshMoney();
+        RefreshAllItemsCanBuy();
+    }
+
+    private void RefreshAllItemsCanBuy()
+    {
+        foreach(var one in _itemShopSkinUis)
+        {
+            one.RefreshCanBuy(_currentMoney);
+        }
     }
 
 
@@ -79,6 +89,8 @@ public class WndSkinShop : MonoBehaviour
         }
     }
 
+
+
     private void CreateItem(ItemSkin itemSkin)
     {
         var obj = Instantiate(_prefabItem, _parentForItems);
@@ -87,6 +99,7 @@ public class WndSkinShop : MonoBehaviour
             bool isItemBuyed = CtrlGame.Instance.IsSkinBuyed(itemSkin.Name);
             comp.SetupItem(itemSkin, _currentMoney, isItemBuyed);
             comp.SetupActions(OnApplyItem, OnBuyItem);
+            _itemShopSkinUis.Add(comp);
         }
     }
 
@@ -96,6 +109,7 @@ public class WndSkinShop : MonoBehaviour
         {
             GameObject.Destroy(item.gameObject);
         }
+        _itemShopSkinUis.Clear();
     }
 
 

@@ -39,13 +39,7 @@ public class ItemShopSkinUi : MonoBehaviour
             _name.text = itemSkin.Name;
             _price.text = itemSkin.Price.ToString();
 
-            if(currentMoney >= itemSkin.Price)
-            {
-                _pivotHaveMoney.SetActive(true);
-            }
-            else _pivotHaveMoney.SetActive(false);
-
-           
+            RefreshCanBuy(currentMoney);
 
             if (isMine)
             {
@@ -71,6 +65,14 @@ public class ItemShopSkinUi : MonoBehaviour
         OnBuy = onPressedBuy;
     }
 
+    public void RefreshCanBuy(int currentMoney)
+    {
+        if (currentMoney >= _currentItemSkin.Price)
+        {
+            _pivotHaveMoney.SetActive(true);
+        }
+        else _pivotHaveMoney.SetActive(false);
+    }
 
     public void OnClickApply()
     {
