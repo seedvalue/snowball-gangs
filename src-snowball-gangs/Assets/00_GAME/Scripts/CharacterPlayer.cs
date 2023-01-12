@@ -10,10 +10,17 @@ public class CharacterPlayer : Character
     public bool isSelected = false;
 
 
-  
 
 
-    
+    private bool isEditor = false;
+    private void CheckEditor()
+    {
+        if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.LinuxEditor)
+        {
+            isEditor = true;
+        }
+    }
+
 
     private string GetRandomDanceAnim()
     {
@@ -41,13 +48,13 @@ public class CharacterPlayer : Character
             //new state have
             if (isPlayerSelected)
             {
-                Debug.Log("ANIMATOR Set trigger " + PlayerSelected);
+                if (!isEditor) Debug.Log("ANIMATOR Set trigger " + PlayerSelected);
                 //selected anim
                 _animator.SetTrigger(PlayerSelected);
             }
             else
             {
-                Debug.Log("ANIMATOR Set trigger " + PlayerDeSelected);
+                if (!isEditor) Debug.Log("ANIMATOR Set trigger " + PlayerDeSelected);
 
                 // deselected anim
                // _animator.SetTrigger(PlayerDeSelected);
@@ -57,7 +64,15 @@ public class CharacterPlayer : Character
         
         isSelected = isPlayerSelected;
     }
-    
+
+
+
+    private void Awake()
+    {
+        //CheckEditor();
+        isEditor = true;
+    }
+
     void Start()
     {
         OnPlayerDeselected();
