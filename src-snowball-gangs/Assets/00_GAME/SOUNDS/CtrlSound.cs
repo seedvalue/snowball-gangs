@@ -25,6 +25,32 @@ public class CtrlSound : MonoBehaviour
 
     [SerializeField] private AudioSource _mainMenuMusic;
     [SerializeField] private AudioSource _gamePlayMusic;
+    [SerializeField] private AudioSource _skinShopMusic;
+
+    #region UI
+
+    [Header("Ui")]
+    [SerializeField] private AudioSource ButtonClick;
+    [SerializeField] private AudioSource SkinApply;
+    [SerializeField] private AudioSource SkinBuy;
+
+    public void PlayButtonClick()
+    {
+       if(ButtonClick) ButtonClick.Play();
+    }
+
+    public void PlaySkinApply()
+    {
+        if (SkinApply) SkinApply.Play();
+    }
+
+    public void PlaySkinBuy()
+    {
+        if (SkinBuy) SkinBuy.Play();
+    }
+
+
+    #endregion
 
 
     #region CANDY GIFT
@@ -176,6 +202,7 @@ public class CtrlSound : MonoBehaviour
     public void PlayMainMenu()
     {
         _gamePlayMusic.Stop();
+        _skinShopMusic.Stop();
         if (!_mainMenuMusic) return;
         _mainMenuMusic.Play();
         _mainMenuMusic.loop = true;
@@ -185,10 +212,19 @@ public class CtrlSound : MonoBehaviour
     public void PlayGamePlay()
     {
         _mainMenuMusic.Stop();
+        _skinShopMusic.Stop();
         if (!_gamePlayMusic) return;
         _gamePlayMusic.Play();
         _gamePlayMusic.loop = true;
         _gamePlayMusic.playOnAwake = false;
+    }
+
+    public void PlaySkinShop()
+    {
+        _mainMenuMusic.Stop();
+        _gamePlayMusic.Stop();
+        _skinShopMusic.Play();
+        _skinShopMusic.loop = true;
     }
 
     public void PlayFootStep()
