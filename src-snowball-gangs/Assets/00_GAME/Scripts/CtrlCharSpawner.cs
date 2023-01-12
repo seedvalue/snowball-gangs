@@ -13,9 +13,11 @@ public class CtrlCharSpawner : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject playersPrefab;
     
+    private ShopData _shopData;
     
-    public void SpawnPlayers(int count)
+    public void SpawnPlayers(int count, string skinName)
     {
+        Debug.Log("CtrlCharSpawner : SpawnPlayers : count = " + count + " " + skinName);
         float minBetweenEnemy = 1.5F;
         for (int i = 0; i < count; i++)
         {
@@ -24,14 +26,15 @@ public class CtrlCharSpawner : MonoBehaviour
             pos.y = 1;
             pos.x =  i * minBetweenEnemy - minBetweenEnemy* count/2F;
             Quaternion rot = Quaternion.Euler(new Vector3(0F, 0, 0F));
-            NightPool.Spawn(playersPrefab, pos, rot);
+            var spawned = NightPool.Spawn(playersPrefab, pos, rot);
+            SetPlayerSkin(spawned, skinName);
         }
-        
     }
     
     
-    public void SpawnEnemies(int count)
+    public void SpawnEnemies(int count, string skinName)
     {
+        Debug.Log("CtrlCharSpawner : SpawnEnemies : count = " + count + " " + skinName);
         float minBetweenEnemy = 1.5F;
         for (int i = 0; i < count; i++)
         {
@@ -40,12 +43,21 @@ public class CtrlCharSpawner : MonoBehaviour
           pos.y = 1;
           pos.x =  i * minBetweenEnemy - minBetweenEnemy* count/2F;
           Quaternion rot = Quaternion.Euler(new Vector3(0F, 180F, 0F));
-          NightPool.Spawn(enemyPrefab, pos, rot);
+            var spawned = NightPool.Spawn(enemyPrefab, pos, rot);
+            SetPlayerSkin(spawned, skinName);
         }
-        
     }
     
-    
+
+    private void SetPlayerSkin(GameObject spawnedChar, string name)
+    {
+        CharSkinSwitcher switcher = spawnedChar.transform.GetComponent<CharSkinSwitcher>();
+        if (switcher != null) {
+            switcher.SelectSkin(name);
+        }
+    }
+
+
     private void Awake()
     {
         Instance = this;
