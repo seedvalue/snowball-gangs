@@ -6,6 +6,8 @@ using UnityEngine;
 public class CtrlGame : MonoBehaviour
 {
     public static CtrlGame Instance;
+    
+    [SerializeField] private bool TestAdd20Money = false;
 
     [SerializeField] private bool isTest = false;
     [SerializeField] private bool isOnlyPLayersSpawn = false;
@@ -246,7 +248,6 @@ public class CtrlGame : MonoBehaviour
         Instance = this;
         CurrentCandyValue = PlayerPrefs.GetInt("CANDY");
         RefreshSkinsPrefs();
-        Add20Coins();
     }
 
 
@@ -259,6 +260,15 @@ public class CtrlGame : MonoBehaviour
 
        if (isTest) LoadTest();
         CtrlUi.Instance._wndGamePlay.SetCandy(CurrentCandyValue);
+    }
+
+    private void Update()
+    {
+        if(TestAdd20Money)
+        {
+            Add20Coins();
+            TestAdd20Money = false;
+        }
     }
 }
 
