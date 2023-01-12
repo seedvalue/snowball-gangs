@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class WndMainMenu : MonoBehaviour
 {
     public Button BtnPlay;
-
+    public Button BtnSkinShop;
 
 
 
@@ -18,9 +18,15 @@ public class WndMainMenu : MonoBehaviour
         CtrlGame.Instance.OnClickedPlay(0);
     }
 
+    public void OnclickedSkinShop()
+    {
+        Debug.Log("WndMainMenu : OnclickedSkinShop");
+        CtrlUi.Instance.ShowSkinShop();
+    }
 
     private void Awake()
     {
         BtnPlay.onClick.AddListener(OnclickedPlay);
+        BtnSkinShop.onClick.AddListener(OnclickedSkinShop);
     }
 }

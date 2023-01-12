@@ -11,12 +11,17 @@ public class CtrlUi : MonoBehaviour
     [SerializeField] public WndGamePlay _wndGamePlay;
     [SerializeField] private WndPause _wndPause;
     [SerializeField] private WndLevelFinish _wndFinishLevel;
-
+    [SerializeField] private WndSkinShop _wndSkinShop;
 
     [SerializeField] private GameObject _wndLoading;
 
     public bool isGamePlayTest = false;
 
+    public void ShowSkinShop()
+    {
+        HideAll();
+        _wndSkinShop.gameObject.SetActive(true);
+    }
 
 
     public void ShowLoading(bool isShow)
@@ -63,11 +68,11 @@ public class CtrlUi : MonoBehaviour
     private void HideAll()
     {
         Time.timeScale = 1F;
-        _wndMainMenu.gameObject.SetActive(false);
-        _wndGamePlay.gameObject.SetActive(false);
-        _wndPause.gameObject.SetActive(false);
-        _wndFinishLevel.gameObject.SetActive(false);
-
+        if(_wndMainMenu) _wndMainMenu.gameObject.SetActive(false);
+        if (_wndGamePlay) _wndGamePlay.gameObject.SetActive(false);
+        if (_wndPause) _wndPause.gameObject.SetActive(false);
+        if (_wndFinishLevel) _wndFinishLevel.gameObject.SetActive(false);
+        if (_wndSkinShop) _wndSkinShop.gameObject.SetActive(false);
     }
 
 
