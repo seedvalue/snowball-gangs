@@ -117,6 +117,7 @@ public class WndSkinShop : MonoBehaviour
     {
         Debug.Log("WndSkinShop : OnclickedMainMenu");
         CtrlUi.Instance.ShowMainMenu();
+        CtrlSound.Instance.PlayButtonClick();
     }
 
     public void OnclickedApplyToHuman()
@@ -124,6 +125,7 @@ public class WndSkinShop : MonoBehaviour
         Debug.Log("WndSkinShop : OnclickedApplyToHuman : " + _selectedItemSkin.Name);
         CtrlGame.Instance.SetSkinHuman(_selectedItemSkin.Name );
         ShowPopupApplyTo(false);
+        CtrlSound.Instance.PlaySkinApply();
     }
 
     public void OnclickedApplyToCpu()
@@ -131,6 +133,7 @@ public class WndSkinShop : MonoBehaviour
         Debug.Log("WndSkinShop : OnclickedApplyToCpu : " + _selectedItemSkin.Name);
         CtrlGame.Instance.SetSkinCpu(_selectedItemSkin.Name);
         ShowPopupApplyTo(false);
+        CtrlSound.Instance.PlaySkinApply();
     }
 
 

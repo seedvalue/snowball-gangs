@@ -77,12 +77,16 @@ public class ItemShopSkinUi : MonoBehaviour
     public void OnClickApply()
     {
         Debug.Log("ItemShopSkinUi : OnClickApply : ");
+        // CtrlSound.Instance.PlaySkinApply();
+        CtrlSound.Instance.PlayButtonClick();
         OnApply?.Invoke(_currentItemSkin);
     }
 
     public void OnClickBuy()
     {
         Debug.Log("ItemShopSkinUi : OnClickApply : ");
+        CtrlSound.Instance.PlayButtonClick();
+        CtrlSound.Instance.PlaySkinBuy();
         OnBuy?.Invoke(_currentItemSkin);
         // money -=
         // refresh item
