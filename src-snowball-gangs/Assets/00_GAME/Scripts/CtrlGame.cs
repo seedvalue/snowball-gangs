@@ -20,6 +20,83 @@ public class CtrlGame : MonoBehaviour
     public int Dies = 0;
 
 
+
+    #region SKIN
+
+    public void SetSkinHuman(string skinName)
+    {
+        Debug.Log("CtrlGame : SetSkinHuman : " + skinName);
+        PlayerPrefs.SetString(_skinPrefHuman, skinName);
+        this.RefreshSkinsPrefs();
+    }
+
+    public void SetSkinCpu(string skinName)
+    {
+        Debug.Log("CtrlGame : SetSkinCpu : " + skinName);
+        PlayerPrefs.SetString(_skinPrefCpu, skinName);
+        this.RefreshSkinsPrefs();
+    }
+
+    [SerializeField]
+    private string _skinHuman;
+    [SerializeField]
+    private string _skinCpu;
+
+    private const string _skinPrefHuman = "SkinHuman";
+    private const string _skinPrefCpu = "SkinCpu";
+
+    private void RefreshSkinsPrefs()
+    {
+        if(PlayerPrefs.HasKey(_skinPrefHuman))
+        {
+            _skinHuman = PlayerPrefs.GetString(_skinPrefHuman);
+        } else
+        {
+            _skinHuman = "Elf";
+        }
+
+        if (PlayerPrefs.HasKey(_skinPrefCpu))
+        {
+            _skinCpu = PlayerPrefs.GetString(_skinPrefCpu);
+        }
+        else
+        {
+            _skinCpu = "Santa";
+        }
+    }
+
+
+    private string BuyedSkinPrefix = "BUYED_";
+
+    public void BuySkinItem(string skinName, int price)
+    {
+        //minus money
+        CurrentCandyValue -= price;
+        if (CurrentCandyValue < 0) CurrentCandyValue = 0;
+        PlayerPrefs.SetInt("CANDY", CurrentCandyValue);
+        //save skin
+        string resultPref = BuyedSkinPrefix + skinName;
+        Debug.Log("Save pref = " + resultPref);
+        PlayerPrefs.SetString(resultPref, "1");
+        PlayerPrefs.Save();
+    }
+
+    public bool IsSkinBuyed(string skinName)
+    {
+        string resultPref = BuyedSkinPrefix + skinName;
+        if (PlayerPrefs.HasKey(resultPref))
+        {
+            return true;
+        }
+        Debug.Log("CtrlGame : IsSkinBuyed : " + resultPref + " FALSE");
+        return false;
+    }
+
+
+    #endregion 
+
+
+
     public void OnSomeWin(int livePlayers, int liveEnemies)
     {
         if(livePlayers > liveEnemies)
@@ -106,10 +183,11 @@ public class CtrlGame : MonoBehaviour
 
     public void LoadLevel(int levelNum)
     {
+        this.RefreshSkinsPrefs();
         int enemyCount = 1 + levelNum;
         int friendCount = 1 + levelNum / 2;
-        CtrlCharSpawner.Instance.SpawnEnemies(enemyCount);
-        CtrlCharSpawner.Instance.SpawnPlayers(friendCount);
+        CtrlCharSpawner.Instance.SpawnEnemies(enemyCount, _skinCpu);
+        CtrlCharSpawner.Instance.SpawnPlayers(friendCount, _skinHuman);
         CtrlUi.Instance.ShowGamePlay();
     }
 
@@ -119,10 +197,10 @@ public class CtrlGame : MonoBehaviour
     {
         if(!isOnlyPLayersSpawn)
         {
-            CtrlCharSpawner.Instance.SpawnEnemies(playerCount);
+            CtrlCharSpawner.Instance.SpawnEnemies(playerCount, _skinCpu);
         }
         
-        CtrlCharSpawner.Instance.SpawnPlayers(playerCount);
+        CtrlCharSpawner.Instance.SpawnPlayers(playerCount, _skinHuman);
         yield return new WaitForSeconds(2F);
         
         //Идти вперед
@@ -131,6 +209,14 @@ public class CtrlGame : MonoBehaviour
 
 
     public int CurrentCandyValue = 0;
+
+
+    private void Add20Coins()
+    {
+        CurrentCandyValue += 20; 
+        PlayerPrefs.SetInt("CANDY", CurrentCandyValue);
+    }
+
 
     public void OnCandyGet()
     {
@@ -150,12 +236,17 @@ public class CtrlGame : MonoBehaviour
         CtrlSound.Instance.PlayCandyLooseUi();
     }
 
+  
+
+
 
 
     private void Awake()
     {
         Instance = this;
         CurrentCandyValue = PlayerPrefs.GetInt("CANDY");
+        RefreshSkinsPrefs();
+        Add20Coins();
     }
 
 
