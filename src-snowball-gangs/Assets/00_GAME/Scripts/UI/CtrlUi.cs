@@ -21,6 +21,7 @@ public class CtrlUi : MonoBehaviour
     {
         HideAll();
         _wndSkinShop.gameObject.SetActive(true);
+        CtrlSound.Instance.PlaySkinShop();
     }
 
 
