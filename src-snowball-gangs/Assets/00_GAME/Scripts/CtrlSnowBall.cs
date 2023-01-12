@@ -37,6 +37,16 @@ public class CtrlSnowBall : MonoCache
 
     private float _impactDistance = 0.5F;
 
+    private bool isEditor = false;
+    private void CheckEditor()
+    {
+        if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.LinuxEditor)
+        {
+            isEditor = true;
+        }
+    }
+
+
     private void UpdateBallImpact()
     {
         for(int i=0; i < balls.Count; i++)
@@ -50,7 +60,7 @@ public class CtrlSnowBall : MonoCache
                 {
                     //Â êîãî òî ïîïàëè
                     //ÎÒÏÐÀÂÈÒÜ ÒÐÀÍñôîðì
-                    Debug.Log("<color=green> CtrlSnowBall </color: UpdateBallImpact : SOME HITED");
+                    if (!isEditor) Debug.Log("<color=green> CtrlSnowBall </color: UpdateBallImpact : SOME HITED");
                     var component = impactedCharacter.GetComponent<Character>();
                     component.OnBallTouched();
                     CtrlParticles.Instance.PlayPlayerSnowImpact(balls[i].position, Vector3.up);
@@ -126,7 +136,7 @@ public class CtrlSnowBall : MonoCache
 
     public void DropBall(Vector3 from, Vector3 direction)
     {
-        Debug.Log("CtrlSnowBall : DropBall");
+        if (!isEditor) Debug.Log("CtrlSnowBall : DropBall");
         Transform ball = null;
         ball = NightPool.Spawn(snowballPrefab, from, Quaternion.identity);
 
@@ -187,6 +197,8 @@ public class CtrlSnowBall : MonoCache
     private void Awake()
     {
         Instance = this;
+        //CheckEditor();
+        isEditor = true;
     }
 
     protected override void Run()
