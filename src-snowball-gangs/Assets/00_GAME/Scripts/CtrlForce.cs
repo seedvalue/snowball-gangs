@@ -29,8 +29,17 @@ public class CtrlForce : MonoCache
     public float speedChangeForce = 1F;
 
     Tween speedMotion;
-   
-    
+
+    private bool isEditor = false;
+    private void CheckEditor()
+    {
+        if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.LinuxEditor)
+        {
+            isEditor = true;
+        }
+    }
+
+
     void UpdateSpeedPingPong()
     {
        // _decalProjector.size = _sizeStart * currSpeed + Vector3.one * 1.0F;
@@ -83,6 +92,8 @@ public class CtrlForce : MonoCache
     private void Awake()
     {
         //_sizeStart = _decalProjector.size;
+        //CheckEditor();
+        isEditor = true;
         Instance = this;
     }
 
@@ -97,8 +108,8 @@ public class CtrlForce : MonoCache
     {
         //Избежать повтроного вызова,тк там апдейт
         if (IsShowedSlider == isShow) return;
-        
-        Debug.Log("CtrlForce : OnShowSlider :"+ isShow.ToString());
+
+        if (!isEditor) Debug.Log("CtrlForce : OnShowSlider :"+ isShow.ToString());
         if(isShow)
         {
             speedMotion = DOVirtual.Float(0F, 1F, _duration, SetFloat)

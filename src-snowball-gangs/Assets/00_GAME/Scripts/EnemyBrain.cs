@@ -16,6 +16,15 @@ public class EnemyBrain : MonoCache
     public Transform targetPos;
 
 
+    private bool isEditor = false;
+    private void CheckEditor()
+    {
+        if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.OSXEditor || Application.platform == RuntimePlatform.LinuxEditor)
+        {
+            isEditor = true;
+        }
+    }
+
     private void Init()
     {
         _character = transform.GetComponent<Character>();
@@ -47,8 +56,8 @@ public class EnemyBrain : MonoCache
         int mask = 1 << LayerMask.NameToLayer("PlayerRaycast");
         if (Physics.Raycast(transform.position,transform.forward, out hit, _rayDistance, mask))
         {
-            Debug.DrawRay(transform.position, transform.forward * _rayDistance, Color.blue, 1F);
-            Debug.Log(hit.collider.name+ " has been shot");
+            if (!isEditor) Debug.DrawRay(transform.position, transform.forward * _rayDistance, Color.blue, 1F);
+            if (!isEditor) Debug.Log(hit.collider.name+ " has been shot");
          
             if (hit.transform.CompareTag("Player"))
             {
@@ -172,6 +181,8 @@ public class EnemyBrain : MonoCache
     private void Awake()
     {
         Init();
+        //CheckEditor();
+        isEditor = true;
     }
 
 
