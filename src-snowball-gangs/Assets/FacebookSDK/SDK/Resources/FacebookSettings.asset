@@ -16,9 +16,9 @@ MonoBehaviour:
   clientTokens:
   - 
   appIds:
-  - 0
+  - 3356836321231198
   appLabels:
-  - App Name
+  - Snowball Battle
   cookie: 1
   logging: 1
   status: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610101c45af526d4f8c2b5b4c7a6b97e, type: 3}
   m_Name: New My Ads Config
   m_EditorClassIdentifier: 
-  isTestingNow: 0
+  isTestingNow: 1
   idInterstitialAndroid: ca-app-pub-7602426439989665/6705448532
   idInterstitialIphone: ca-app-pub-7602426439989665/6705448532
   idRewardAndroid: ca-app-pub-7602426439989665/6705448532
