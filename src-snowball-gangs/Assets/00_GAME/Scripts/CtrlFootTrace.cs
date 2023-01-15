@@ -2,7 +2,7 @@ using NTC.Global.Pool;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
+//using UnityEngine.Rendering.Universal;
 using NTC.Global.Cache;
 public class CtrlFootTrace : MonoCache
 {
@@ -11,14 +11,14 @@ public class CtrlFootTrace : MonoCache
     bool decalsIsDisabled = true;
 
 
-    [SerializeField]
-    DecalProjector LeftFoot;
+  //  [SerializeField]
+   // DecalProjector LeftFoot;
 
-    [SerializeField]
-    DecalProjector DoubleFoot;
+  //  [SerializeField]
+  //  DecalProjector DoubleFoot;
 
-    [SerializeField]
-    List<DecalProjector> decalProjectors = new List<DecalProjector>();
+   // [SerializeField]
+   // List<DecalProjector> decalProjectors = new List<DecalProjector>();
 
    
 
@@ -26,16 +26,16 @@ public class CtrlFootTrace : MonoCache
     {
         if (decalsIsDisabled) return;
         
-        DecalProjector trace = NightPool.Spawn(LeftFoot, pos, Quaternion.Euler(rot));
-        decalProjectors.Add(trace);
+      //  DecalProjector trace = NightPool.Spawn(LeftFoot, pos, Quaternion.Euler(rot));
+     //   decalProjectors.Add(trace);
       //  SetParent(trace.transform);
     }
 
     public void ShowFootTraceRight(Vector3 pos, Vector3 rot)
     {
-        if (decalsIsDisabled) return;
-        DecalProjector trace = NightPool.Spawn(LeftFoot, pos, Quaternion.Euler(rot));
-        decalProjectors.Add(trace);
+      //  if (decalsIsDisabled) return;
+      //  DecalProjector trace = NightPool.Spawn(LeftFoot, pos, Quaternion.Euler(rot));
+     //   decalProjectors.Add(trace);
      //   SetParent(trace.transform);
     }
 
@@ -62,6 +62,7 @@ public class CtrlFootTrace : MonoCache
 
     private void Clean()
     {
+      /*
         for (int i = 0; i < decalProjectors.Count; i++)
         {
             decalProjectors[i].fadeFactor -= fadeStep;
@@ -70,6 +71,7 @@ public class CtrlFootTrace : MonoCache
                 NightPool.Despawn(decalProjectors[i].gameObject);
             }
         }
+      */
     }
 
 
@@ -82,6 +84,6 @@ public class CtrlFootTrace : MonoCache
     protected override void Run()
     {
         if (decalsIsDisabled) return;
-        UpdateDecalClean();
+       // UpdateDecalClean();
     }
 }
