@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
+//using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 using NTC.Global.Cache;
 using DG.Tweening;
@@ -10,7 +10,7 @@ using DG.Tweening;
 public class CtrlForce : MonoCache
 {
     public static CtrlForce Instance;
-    [SerializeField] private DecalProjector _decalProjector;
+   // [SerializeField] private DecalProjector _decalProjector;
     [SerializeField] private Slider _sliderForce;
 
     [field: Range(0F, 1F)]
@@ -61,11 +61,11 @@ public class CtrlForce : MonoCache
     private void UpdateDecal()
     {
 
-        Vector2 offset = _decalProjector.uvBias;
-        offset.y -= (CurrForce * Time.deltaTime + baseSpeed * Time.deltaTime);
-        _decalProjector.uvBias = offset;
+       // Vector2 offset = _decalProjector.uvBias;
+      //  offset.y -= (CurrForce * Time.deltaTime + baseSpeed * Time.deltaTime);
+       // _decalProjector.uvBias = offset;
 
-        Vector2 tiling = _decalProjector.uvScale;
+      //  Vector2 tiling = _decalProjector.uvScale;
        
         // 1 полный размер
         // 2 делится
