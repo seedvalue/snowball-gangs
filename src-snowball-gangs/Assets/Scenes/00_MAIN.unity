@@ -636,8 +636,8 @@ Camera:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.8820755, g: 0.9674691, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3484,7 +3484,7 @@ MonoBehaviour:
   TestAdd20Money: 0
   isTest: 0
   isOnlyPLayersSpawn: 0
-  playersCount: 10
+  playersCount: 5
   Restarts: 0
   Dies: 0
   _skinHuman: 
@@ -3891,6 +3891,21 @@ PrefabInstance:
         type: 3}
       propertyPath: isGamePlayTest
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822581295181099263, guid: 473d79ea80d561a4e8cff85b89401f34,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -39.69995
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822581295181099263, guid: 473d79ea80d561a4e8cff85b89401f34,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -26.200012
+      objectReference: {fileID: 0}
+    - target: {fileID: 3822581295516351001, guid: 473d79ea80d561a4e8cff85b89401f34,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 26.488037
       objectReference: {fileID: 0}
     - target: {fileID: 3880165012064172338, guid: 473d79ea80d561a4e8cff85b89401f34,
         type: 3}
