@@ -238,8 +238,16 @@ public class CtrlGame : MonoBehaviour
         CtrlSound.Instance.PlayCandyLooseUi();
     }
 
-  
 
+    private void SetScreenResolution(int divide)
+    {
+        var currRes = Screen.currentResolution;
+        Resolution resolution = currRes;
+        resolution.width = resolution.width / divide;
+        resolution.height = resolution.height / divide;
+        Screen.SetResolution(resolution.width, resolution.height, true);
+        Application.targetFrameRate = 60;
+    }
 
 
 
@@ -248,6 +256,7 @@ public class CtrlGame : MonoBehaviour
         Instance = this;
         CurrentCandyValue = PlayerPrefs.GetInt("CANDY");
         RefreshSkinsPrefs();
+        SetScreenResolution(2);
     }
 
 
